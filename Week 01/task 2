@@ -1,0 +1,8 @@
+//task2
+int main()
+{
+	int number1, number2;
+	std::cin >> number1 >> number2;
+std::cout << "chastno" << number1 / number2;
+	std::cout << "ostatuk" << number1 % number2;
+}
