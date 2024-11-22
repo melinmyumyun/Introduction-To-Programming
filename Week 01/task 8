@@ -1,0 +1,8 @@
+//task8
+int main()
+{
+	int a, b, c, d;
+	std::cin >> a >> b >> c >> d;
+	bool intersect = (a <= d && b >= c);
+	std::cout << intersect;
+}
