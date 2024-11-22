@@ -1,0 +1,10 @@
+//task13
+int main()
+{
+	int number;
+	std::cin >> number;
+	bool isTwoDigit = (number >= 10 && number <= 99) || (number <= -10 && number >= -99);
+	int print = isTwoDigit * number + !isTwoDigit * (number < 0 ? -(number % 10) : (number % 10));
+
+	std::cout << print;
+}
