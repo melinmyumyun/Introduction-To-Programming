@@ -1,0 +1,10 @@
+//task4
+int main()
+{
+	double rectangleLenght, rectangleWidth;
+	std::cin >> rectangleLenght >> rectangleWidth;
+	double perimeter = 2 * (rectangleLenght + rectangleWidth);
+	double area = rectangleLenght * rectangleWidth;
+	std::cout << "perimeter: " << perimeter << std::endl << "area: " << area;
+
+}
