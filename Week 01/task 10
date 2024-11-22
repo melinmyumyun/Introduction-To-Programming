@@ -1,0 +1,8 @@
+//task10
+int main()
+{
+	int a, b, c, d;
+	std::cin >> a >> b >> c >> d;
+	bool isGeometricProgression = (b * b == a * c) && (c * c == b * d);
+	std::cout << isGeometricProgression;
+}
