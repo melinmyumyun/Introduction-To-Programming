@@ -1,0 +1,8 @@
+//task6
+int main()
+{
+	int number;
+	std::cin >> number;
+	number = number / 10;
+	std::cout << number;
+}
