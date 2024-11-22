@@ -1,0 +1,9 @@
+//task12
+int main()
+{
+	double a, b;
+	std::cin >> a >> b;
+	double maxNumber = a * (a >= b) + b * (b > a);
+	std::cout << maxNumber;
+
+}
