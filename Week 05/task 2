@@ -1,0 +1,63 @@
+//task2
+int gcd(int a, int b)
+{
+	if (a < b)
+	{
+		swap(a, b);
+	}
+
+	while(b!=0)
+	{
+		a = a % b;
+		swap(a, b);
+	}
+	return a;
+}
+
+
+//int main()
+//{
+//	int m, n;
+//	std::cin >> m >> n;
+//	int gcdd = gcd(m, n);
+//	std::cout << gcdd;
+//}
+
+void simplifyFraction(int& numerator, int& denominator) 
+{
+	int commonDivisor = gcd(numerator, denominator);
+	numerator /= commonDivisor; 
+	denominator /= commonDivisor; 
+}
+void addFractions(int num1, int den1, int num2, int den2)
+{
+
+	int commonDenominator = den1 * den2;
+	int newNum1 = num1 * den2;
+	int newNum2 = num2 * den1;
+
+	int sumNumerator = newNum1 + newNum2;
+
+	simplifyFraction(sumNumerator, commonDenominator);
+	std:: cout << "Sum is " << sumNumerator << "/" << commonDenominator << std::  endl;
+}
+
+int main() 
+{
+	int num1, den1, num2, den2;
+
+	std::cout << "Enter the numerator and denominator of the first fraction: ";
+	std::cin >> num1 >> den1;
+	std::cout << "Enter the numerator and denominator of the second fraction: ";
+	std::cin >> num2 >> den2;
+
+	simplifyFraction(num1, den1);
+	simplifyFraction(num2, den2);
+
+	std::cout << "The abbreviated first fraction: " << num1 << "/" << den1 << std:: endl;
+	std::cout << "The abbreviated second fraction: " << num2 << "/" << den2 <<std:: endl;
+
+	addFractions(num1, den1, num2, den2);
+
+	return 0;
+}
