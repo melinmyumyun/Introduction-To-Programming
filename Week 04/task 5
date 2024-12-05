@@ -1,0 +1,43 @@
+//task5
+bool isSpecial(int n, int K)
+{
+	while (n > 0)
+	{
+		int digit = n % 10;
+		if (digit != 0 && K % digit != 0)
+		{
+			return false;
+		}
+		n /= 10;
+
+	}
+	return true;
+}
+
+//int main()
+//{
+//	int K, N,M;
+//
+//
+//	std::cout << "Enter K: ";
+//	std::cin >> K;
+//	std::cout << "Enter the interval [N;M]: ";
+//	std::cin >> N >> M;
+//
+//	bool found = false;
+//	for (int i = N; i <= M; i++)
+//	{
+//		if (isSpecial(i, K))
+//		{
+//			std::cout << i << " ";
+//			found = true;
+//		}
+//	}
+//
+//	if (!found) 
+//	{
+//		std::cout << "Don't found special number" <<std:: endl;
+//	}
+//
+//	return 0;
+//}
