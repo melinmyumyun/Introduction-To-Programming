@@ -1,0 +1,62 @@
+//task3
+int reverse(int number)
+{
+	int reversed = 0;
+	while (number)
+	{
+		int lastD = number % 10;
+		reversed = reversed * 10 + lastD;
+		number /= 10;
+	}
+	return reversed;
+
+}
+unsigned int countDigits(unsigned int num)
+{
+	unsigned count = 0;
+	if (num == 0) {
+		return 1;
+	}
+
+	while (num > 0)
+	{
+		count++;
+		num /= 10;
+	}
+	return count;
+}
+
+unsigned int pow(unsigned int base, unsigned int exponent)
+{
+	unsigned res = 1;
+	for (unsigned i = 0; i < exponent; i++)
+	{
+		res *= base;
+	}
+	return res;
+}
+
+int concat(unsigned int f, unsigned int s)
+{
+	unsigned secondDigitsCount = countDigits(s);
+	return f * pow(10, secondDigitsCount) + s;
+}
+
+int removeKthDigit( int num,  int k)
+{
+ int powerOf10 = 1;
+unsigned int rightSide = 0;
+
+	for (int i = 0; i < k - 1; i++)
+	{
+		rightSide *= 10;
+		rightSide += (num % 10);
+		num /= 10;
+	}
+	num /= 10;
+
+	rightSide = reverse(rightSide);
+
+
+	return concat(num, rightSide);
+}
