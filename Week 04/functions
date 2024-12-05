@@ -1,0 +1,142 @@
+int absoluteValue(int number)
+{
+	return ((number > 0) ? number : -number);
+}
+
+bool isDigit(char symbol) 
+{
+	return symbol >= '0' && symbol <= '9';
+}
+
+char toLower(char symbol)
+{
+	if (symbol >= 'A' && symbol <= 'Z')
+	{
+		return symbol + 'a' - 'A';
+	}
+	return symbol;
+}
+
+
+char toUpper(char symbol) 
+{
+	if (symbol >= 'a' && symbol <= 'z')
+	{
+		return symbol + 'A' - 'a';
+	}
+	return symbol;
+}
+
+int toNumber(char symbol)
+{
+	if (isDigit(symbol))
+	{
+		return symbol - '0';
+
+	}
+	return -2;
+}
+
+char toCharacter(int number)
+{
+	return number + '0';
+}
+
+
+int power(int base, unsigned int exponent)
+{
+	int res = 1;
+	for (int i = 0; i <= exponent; i++)
+	{
+		res *= base;
+	}return res;
+}
+
+bool isPrime(unsigned int number)
+{
+	if (number < 2)
+	{
+		return false;
+	}
+	for (unsigned int i = 2; i*i < number; i++)
+	{
+		if (number % i == 0) 
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+short getLength(int number) 
+{
+	int lenght = 0;
+	while (number)
+	{
+		lenght++;
+		number / 10;
+	
+	}
+	return lenght;
+}
+unsigned getDigitOccurences(unsigned number, int digit)
+{
+	int occur = 0;
+	while (number)
+	{
+		if (number % 10 == digit)
+		{
+			occur++;
+		}
+	}
+	return occur;
+}
+
+unsigned toSorted(unsigned n)
+{
+	unsigned sorted = 0;
+	for (int digit = 1; digit <= 9; digit++) 
+	{
+		unsigned occur = getDigitOccurences(n, digit);
+		for (size_t i = 0; i < occur; i++) 
+		{
+			sorted = sorted * 10 + digit;
+		}
+	}
+	return sorted;
+}
+
+int reverse(int number)
+{
+	int reversed = 0;
+	while (number)
+	{
+		int lastDigit = number % 10;
+		int reversed = reversed * 10 + lastDigit;
+		number /= 10;
+	}
+	return reversed;
+}
+
+
+bool isPermutation(int num1, int num2)
+{
+	if (getLength(num1) != getLength(num2))
+	{
+		return false;
+	}
+	for (int i = 0; i <= 9; i++) 
+	{
+		if (getDigitOccurences(num1, i) != getDigitOccurences(num2, i)) 
+		{
+			return false;
+		}
+	}
+	return true;
+
+}
+
+bool isPalindrome(int n) 
+{
+	return n == reverse(n);
+}
