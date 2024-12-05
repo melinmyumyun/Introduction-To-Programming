@@ -1,0 +1,26 @@
+//task2
+
+int countDigitOccurrences(unsigned int number, int digit)
+{
+	int count = 0;
+
+	while (number > 0)
+	{
+		if (number % 10 == digit)
+		{
+			count++;
+		}
+		number /= 10;
+	}
+
+	return count;
+}
+
+//int main()
+//{
+//	unsigned int number;
+//	int digit;
+//	std::cin >> number >> digit;
+//	int cdo = countDigitOccurrences(number, digit);
+//	std::cout << cdo;
+//}
