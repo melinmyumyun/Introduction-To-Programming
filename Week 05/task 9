@@ -1,0 +1,41 @@
+task 9
+
+int power(int base, int exponent)
+{
+	int res = 1;
+	for (int i = 0; i < exponent; i++)
+	{
+		res = res * base;
+	}
+	return res;
+}
+
+unsigned int getNumLen(unsigned int n)
+{
+	unsigned int lenght = 0;
+	while (n)
+	{
+		lenght++;
+		n /= 10;
+	}
+	return lenght;
+}
+
+unsigned int concat(unsigned int first, unsigned int second)
+{
+	if (second == 0)
+	{
+		return first;
+	}
+	
+	return first * power(10,getNumLen(second)) + second;
+	
+}
+
+int main()
+{
+	int a, b;
+	std::cin >> a >> b;
+	int p = concat(a, b);
+	std::cout << p;
+}
