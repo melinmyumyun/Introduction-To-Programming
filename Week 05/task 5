@@ -1,0 +1,51 @@
+//task5
+unsigned int NewNum(unsigned int n, unsigned int indI, unsigned int indJ)
+{
+    unsigned int res = 0, position = 0;
+
+    while (n > 0)
+    {
+        int lastDigit = n % 10;  
+        n /= 10;  
+
+        if (position >= indI && position <= indJ)
+        {
+            res = res * 10 + lastDigit;
+        }
+
+        position++;  
+    }
+
+    unsigned int finalRes = 0;
+    while (res > 0)
+    {
+        finalRes = finalRes * 10 + res % 10;  
+        res /= 10; 
+    }
+
+    return finalRes;
+}
+
+int main()
+{
+    unsigned int n, i, j;
+
+    std::cout << "Enter n: ";
+    std::cin >> n;
+    std::cout << "Enter index i: ";
+    std::cin >> i;
+    std::cout << "Enter index j: ";
+    std::cin >> j;
+
+    if (i <= j)
+    {
+        unsigned int result = NewNum(n, i, j);
+        std::cout << "Result: " << result << std::endl;
+    }
+    else
+    {
+        std::cout << "Invalid input!" << std::endl;
+    }
+
+    return 0;
+}
