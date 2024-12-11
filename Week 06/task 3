@@ -1,0 +1,47 @@
+
+bool isArrSymmetric(int *arr, size_t size)
+{
+	for (size_t i = 0; i < size/2; i++)
+	{
+		if (arr[i] != arr[size - i - 1])
+		{
+			return false;
+		}
+	}
+	return true;
+
+}
+
+void arrIn(int* arr, size_t size)
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cin >> arr[i];
+	}
+}
+
+int main()
+{
+	const size_t arrSize = 1000;
+	int array[arrSize];
+
+	int size;
+	std::cout << "enter size: ";
+	std::cin >> size;
+
+	std::cout << "enter elements of the array: ";
+	arrIn(array, size);
+
+	if (isArrSymmetric(array,size))
+	{
+		std::cout<<"yes";
+	}
+	else
+	{
+		std::cout << "no";
+	}
+
+
+	return 0;
+
+}
