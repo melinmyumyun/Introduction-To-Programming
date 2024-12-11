@@ -1,0 +1,34 @@
+void removeElement(int* arr, int& n, int elementIndex)
+{
+	if (elementIndex < 0 || elementIndex >= n)
+	{
+		std::cout << "Invalid input! Try again!" << std:: endl;
+		return;
+	}
+	for (size_t i = elementIndex; i < n-1; i++)
+	{
+		arr[i] = arr[i + 1];
+	}
+
+	n--;
+
+}
+void printArray(int arr[],int n) {
+	for (int i = 0; i < n; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std:: endl;
+}
+
+int main()
+{
+	int array[] = { 0,1,2,3,4,5,6,7 };
+	int arraySize = sizeof(array) / sizeof(array[0]);
+	int index;
+	std::cin >> index;
+	removeElement(array, arraySize, index);
+	std::cout << "New array is: ";
+	printArray(array, arraySize);
+
+	
+}
