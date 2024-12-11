@@ -1,0 +1,58 @@
+void removeNegativeEl(int* arr, int& size)
+{
+	int newSize = 0;
+	for (size_t i = 0; i < size; i++)
+	{
+		if (arr[i] >= 0)
+		{
+			arr[newSize] = arr[i];
+			newSize++;
+		}
+	}
+
+	size = newSize;
+}
+
+void arrIn(int* arr, size_t size)
+{
+
+	std::cout << "enter elements of array: ";
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cin >> arr[i];
+	}
+}
+
+void arrPrint(int* arr, size_t size)
+{
+	std::cout << "[";
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cout << arr[i];
+		if (i < size - 1)
+		{
+			std::cout << " ";
+		}
+	}
+
+	std::cout << "]";
+}
+
+int main()
+{
+	const int maxArrSize = 1000;
+	int array[maxArrSize];
+	int size;
+	std::cout << "enter array size ";
+	std::cin >> size;
+
+
+	arrIn(array, size);
+
+	removeNegativeEl(array, size);
+
+	std::cout << "new array is: ";
+	arrPrint(array, size);
+
+	return 0;
+}
