@@ -58,7 +58,7 @@ void mergeSortedArrays(const int* arr1, size_t size1, const int* arr2, size_t si
 
 int main() 
 {
-    const int MAX_SIZE = 1024;
+    const int MAX_SIZE = 100;
     int size1, size2;
 
     std::cout << "Enter size of first array: ";
