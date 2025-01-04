@@ -1,0 +1,110 @@
+//task 9
+
+void swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void bubbleSort(int arr[], size_t n)
+{
+    for (size_t i = 0; i < n - 1; i++)
+    {
+        for (size_t j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+bool contains(int arr[], size_t size, int value)
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        if (arr[i] == value)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void intersectionArrays(int arr1[], size_t size1, int arr2[], size_t size2, int result[], size_t& sizeResult)
+{
+    size_t k = 0;
+
+    for (size_t i = 0; i < size1; ++i)
+    {
+        for (size_t j = 0; j < size2; ++j)
+        {
+            if (arr1[i] == arr2[j] && !contains(result, k, arr1[i]))
+            {
+                result[k++] = arr1[i];
+                break;
+            }
+        }
+    }
+
+    sizeResult = k;
+}
+
+void inputArray(int arr[], size_t size)
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        std::cout << "Enter element arr[" << i << "]: ";
+        std::cin >> arr[i];
+    }
+}
+
+int main()
+{
+    const int MAX_SIZE = 100;
+    size_t size1, size2;
+
+    std::cout << "Enter size of first array (max " << MAX_SIZE << "): ";
+    std::cin >> size1;
+
+    if (size1 <= 0 || size1 > MAX_SIZE)
+    {
+        std::cout << "Invalid size!" << std::endl;
+        return 1;
+    }
+
+    std::cout << "Enter size of second array (max " << MAX_SIZE << "): ";
+    std::cin >> size2;
+
+    if (size2 <= 0 || size2 > MAX_SIZE)
+    {
+        std::cout << "Invalid size!" << std::endl;
+        return 1;
+    }
+
+    int arr1[MAX_SIZE], arr2[MAX_SIZE];
+
+    std::cout << "Enter elements of first array:" << std::endl;
+    inputArray(arr1, size1);
+
+    std::cout << "Enter elements of second array:" << std::endl;
+    inputArray(arr2, size2);
+
+    int result[MAX_SIZE];
+    size_t sizeResult = 0;
+
+    intersectionArrays(arr1, size1, arr2, size2, result, sizeResult);
+
+    bubbleSort(result, sizeResult);
+
+    std::cout << "Intersection of arrays (sorted): ";
+    for (size_t i = 0; i < sizeResult; ++i)
+    {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
