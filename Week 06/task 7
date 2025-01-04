@@ -1,0 +1,96 @@
+//task 7
+
+void swap(int& a, int& b) 
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void bubbleSort(int arr[], int n)
+{
+    for (int i = 0; i < n - 1; i++) 
+    {
+        for (int j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1]) 
+            {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+void arrayInput(int* arr, size_t size) 
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cout << "arr[" << i << "]: ";
+		std::cin >> arr[i];
+	}
+}
+
+void mergeSortedArrays(const int* arr1, size_t size1, const int* arr2, size_t size2, int* result) {
+    size_t i = 0, j = 0, k = 0;
+
+
+    while (i < size1 && j < size2)
+    {
+        if (arr1[i] < arr2[j]) 
+        {
+            result[k++] = arr1[i++];
+        }
+        else {
+            result[k++] = arr2[j++];
+        }
+    }
+
+    while (i < size1) 
+    {
+        result[k++] = arr1[i++];
+    }
+
+    while (j < size2)
+    {
+        result[k++] = arr2[j++];
+    }
+}
+
+int main() 
+{
+    const int MAX_SIZE = 1024;
+    int size1, size2;
+
+    std::cout << "Enter size of first array: ";
+    std::cin >> size1;
+    std::cout << "Enter size of second array: ";
+    std::cin >> size2;
+
+    if (size1 > MAX_SIZE || size2 > MAX_SIZE)
+    {
+        std::cout << "Size exceeds maximum limit!" << std::endl;
+        return 1;
+    }
+
+    int arr1[MAX_SIZE], arr2[MAX_SIZE], result[MAX_SIZE * 2];  
+
+    std::cout << "Enter elements for the first array:" << std::endl;
+    arrayInput(arr1, size1);
+
+    std::cout << "Enter elements for the second array:" << std::endl;
+    arrayInput(arr2, size2);
+
+    bubbleSort(arr1, size1);
+    bubbleSort(arr2, size2);
+
+    mergeSortedArrays(arr1, size1, arr2, size2, result);
+
+    std::cout << "Merged and sorted array: ";
+    for (size_t i = 0; i < size1 + size2; ++i)
+    {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
