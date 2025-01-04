@@ -1,0 +1,144 @@
+//task8
+
+void swap(int& a, int& b)
+{
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void bubbleSort(int arr[], size_t n)
+{
+    for (size_t i = 0; i < n - 1; i++)
+    {
+        for (size_t j = 0; j < n - i - 1; j++)
+        {
+            if (arr[j] > arr[j + 1])
+            {
+                swap(arr[j], arr[j + 1]);
+            }
+        }
+    }
+}
+
+bool contains(int arr[], size_t size, int value)
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        if (arr[i] == value)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+void mergeArrays(int arr1[], size_t size1, int arr2[], size_t size2, int result[], size_t& sizeResult)
+{
+    size_t i = 0, j = 0, k = 0;
+
+    while (i < size1 && j < size2)
+    {
+        if (arr1[i] < arr2[j]) {
+            if (!contains(result, k, arr1[i]))
+            {
+                result[k++] = arr1[i];
+            }
+            i++;
+        }
+        else if (arr1[i] > arr2[j])
+        {
+            if (!contains(result, k, arr2[j]))
+            {
+                result[k++] = arr2[j];
+            }
+            j++;
+        }
+        else
+        {
+            if (!contains(result, k, arr1[i]))
+            {
+                result[k++] = arr1[i];
+            }
+            i++;
+            j++;
+        }
+    }
+
+    while (i < size1)
+    {
+        if (!contains(result, k, arr1[i]))
+        {
+            result[k++] = arr1[i];
+        }
+        i++;
+    }
+
+    while (j < size2)
+    {
+        if (!contains(result, k, arr2[j]))
+        {
+            result[k++] = arr2[j];
+        }
+        j++;
+    }
+
+    sizeResult = k;
+}
+
+void inputArray(int arr[], size_t size)
+{
+    for (size_t i = 0; i < size; ++i)
+    {
+        std::cout << "Enter element arr[" << i << "]: ";
+        std::cin >> arr[i];
+    }
+}
+
+int main()
+{
+    const int MAX_SIZE = 100;
+    size_t size1, size2;
+
+    std::cout << "Enter size of first array (max " << MAX_SIZE << "): ";
+    std::cin >> size1;
+
+    if (size1 <= 0 || size1 > MAX_SIZE)
+    {
+        std::cout << "Invalid size!" << std::endl;
+        return 1;
+    }
+
+    std::cout << "Enter size of second array (max " << MAX_SIZE << "): ";
+    std::cin >> size2;
+
+    if (size2 <= 0 || size2 > MAX_SIZE)
+    {
+        std::cout << "Invalid size!" << std::endl;
+        return 1;
+    }
+
+    int arr1[MAX_SIZE], arr2[MAX_SIZE];
+
+    std::cout << "Enter elements of first array:" << std::endl;
+    inputArray(arr1, size1);
+
+    std::cout << "Enter elements of second array:" << std::endl;
+    inputArray(arr2, size2);
+
+    int result[MAX_SIZE * 2];
+    size_t sizeResult = 0;
+
+    mergeArrays(arr1, size1, arr2, size2, result, sizeResult);
+
+    bubbleSort(result, sizeResult);
+
+    std::cout << "Merged and sorted array (without duplicates): ";
+    for (size_t i = 0; i < sizeResult; ++i)
+    {
+        std::cout << result[i] << " ";
+    }
+    std::cout << std::endl;
+
+    return 0;
+}
