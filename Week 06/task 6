@@ -1,0 +1,76 @@
+void arrayInput(int* arr, size_t size) 
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		std::cout << "arr[" << i << "]: ";
+		std::cin >> arr[i];
+	}
+}
+
+bool isSubArr(const int* arr1, size_t size1, const int* arr2, size_t size2)
+{
+	if (size1 < size2)
+	{
+		std::cout << "not subset" << std::endl;
+		return false;
+	}
+
+	for (size_t i = 0; i <= size1 - size2; ++i)
+	{
+		bool isMatch = true;
+		for (size_t j = 0; j < size2; ++j)
+		{
+			if (arr1[i + j] != arr2[j])                   
+			{                                           
+				isMatch = false;
+				break;
+			}
+		}
+
+		if (isMatch)
+		{
+			return true;
+		}
+		
+	}
+
+	return false;
+}
+
+int main()
+{
+	const int MAX_SIZE = 1024;
+	size_t size1, size2;
+	std::cout << "enter first array size: ";
+	std::cin >> size1;
+	std::cout << "enter second array size: ";
+	std::cin >> size2;
+
+	if (size1 > MAX_SIZE || size2 > MAX_SIZE)
+	{
+		std::cout << "invalid input! " << std::endl;
+		return 1;
+	}
+
+
+	int arr1[MAX_SIZE];
+	int arr2[MAX_SIZE];
+
+	std::cout << " enter first array elements: "<<std::endl;
+	arrayInput(arr1, size1);
+
+	std::cout << " enter second array elements: "<<std::endl;
+	arrayInput(arr2, size2);
+
+
+	if (isSubArr(arr1, size1, arr2, size2))
+	{
+		std::cout << "true" << std::endl;
+	}
+	else
+	{
+		std::cout << "false" << std::endl;
+	}
+
+	return 0;
+}
